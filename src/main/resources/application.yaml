@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+    hibernate:
+      ddl-auto: validate
+springdoc:
+  swagger-ui:
+    path: /market/swagger-ui.html
+  api-docs:
+    path: /market/api-docs
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+    com.example.market: TRACE
