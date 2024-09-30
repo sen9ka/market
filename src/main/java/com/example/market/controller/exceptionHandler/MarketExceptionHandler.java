@@ -1,6 +1,7 @@
 package com.example.market.controller.exceptionHandler;
 
 import com.example.market.controller.exceptionHandler.exceptions.ClientNotFoundException;
+import com.example.market.controller.exceptionHandler.exceptions.ProductHasDifferentOwnerException;
 import com.example.market.controller.exceptionHandler.exceptions.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,11 @@ public class MarketExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<Object> handleProductNotFoundException(ProductNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ProductHasDifferentOwnerException.class)
+    public ResponseEntity<Object> handleProductHasDifferentOwnerException(ProductHasDifferentOwnerException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
