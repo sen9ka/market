@@ -31,17 +31,17 @@ public class ClientController {
         return new ResponseEntity<>(clientService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{clientId}")
     @Operation(summary = "Получение клиента по ID")
-    public ResponseEntity<Client> getClient(@PathVariable Long id) {
-        return new ResponseEntity<>(clientService.findOne(id), HttpStatus.OK);
+    public ResponseEntity<Client> getClient(@PathVariable Long clientId) {
+        return new ResponseEntity<>(clientService.findOne(clientId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{clientId}")
     @Operation(summary = "Удаление клиента")
     @ResponseStatus(value = HttpStatus.OK)
-    public void deleteClient(@PathVariable Long id) {
-        clientService.deleteOne(id);
+    public void deleteClient(@PathVariable Long clientId) {
+        clientService.deleteOne(clientId);
     }
 
 }

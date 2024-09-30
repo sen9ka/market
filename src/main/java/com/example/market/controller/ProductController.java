@@ -32,17 +32,17 @@ public class ProductController {
         return new ResponseEntity<>(productService.findProductsForClient(clientId), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/clients/{clientId}/{productId}")
     @Operation(summary = "Получение товара клиента по ID")
-    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
-        return new ResponseEntity<>(productService.findProductById(id), HttpStatus.OK);
+    public ResponseEntity<Product> getProduct(@PathVariable Long clientId, @PathVariable Long productId) {
+        return new ResponseEntity<>(productService.findProductById(clientId, productId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("clients/{clientId}/{productId}")
     @Operation(summary = "Удаление товара клиента")
     @ResponseStatus(value = HttpStatus.OK)
-    public void deleteProduct(@PathVariable Long id) {
-        productService.deleteOne(id);
+    public void deleteProduct(@PathVariable Long clientId, @PathVariable Long productId) {
+        productService.deleteOne(clientId, productId);
     }
 
 }

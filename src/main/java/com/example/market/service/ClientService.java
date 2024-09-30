@@ -26,13 +26,20 @@ public class ClientService {
     }
 
     @Transactional
-    public Client findOne(Long id) {
-        Optional<Client> optionalClient = clientRepository.findById(id);
-        return optionalClient.orElseThrow(() -> new ClientNotFoundException(Constant.CLIENT_NOT_FOUND_ERROR_MESSAGE + id));
+    public Client findOne(Long clientId) {
+        Optional<Client> client = clientRepository.findById(clientId);
+        checkIfClientExists(client, clientId);
+        return client.orElse(null);
     }
 
     @Transactional
     public void deleteOne(Long id) {
         clientRepository.deleteById(id);
+    }
+
+    public void checkIfClientExists(Optional<Client> optionalClient, Long clientId) {
+        if (optionalClient.isEmpty()) {
+            throw new ClientNotFoundException(Constant.CLIENT_NOT_FOUND_ERROR_MESSAGE + clientId);
+        }
     }
 }
